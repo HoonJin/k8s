@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: myjob
+spec:
+  schedule: "59 23 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: net-tools
+            image: sysnet4admin.net-tools
+            command:
+            - curlchk
+            - nginx
+          restartPolicy: Never
