@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-affinity-preferred
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-affinity-preferred
+  template:
+    metadata:
+      labels:
+        app: nginx-affinity-preferred
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+                - key: accelerator
+                  operator: In
+                  values:
+                  - tesla
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: accelerator
+                  operator: NotIn
+                  values:
+                  - tesla
