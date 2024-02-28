@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quota-11pod-failure
+  namespace: dev1
+spec:
+  replicas: 11
+  selector:
+    matchLabels:
+      app: quota-11pod-failure
+  template:
+    metadata:
+      labels:
+        app: quota-11pod-failure
+    spec:
+      containers:
+      - name: nginx
+        image: nginx

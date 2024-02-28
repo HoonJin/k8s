@@ -3,3 +3,5 @@
 https://github.com/sysnet4admin/_Lecture_k8s_learning.kit
 
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+
+https://kubernetes.io/ko/docs/concepts/policy/resource-quotas/

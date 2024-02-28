@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quota-3g-pvc-failure
+  namespace: dev1
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+  storageClassName: managed-nfs-storage
+
+# Result
+# Error from server (Forbidden): error when creating "ch08/quota-3G-pvc-failure.yaml": 
+# persistentvolumeclaims "quota-3g-pvc-failure" is forbidden: exceeded quota: 
+# quota, 
+#   requested: managed-nfs-storage.storageclass.storage.k8s.io/requests.storage=3Gi, 
+#   used: managed-nfs-storage.storageclass.storage.k8s.io/requests.storage=0, 
+#   limited: managed-nfs-storage.storageclass.storage.k8s.io/requests.storage=2Gi
